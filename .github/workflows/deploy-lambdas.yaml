@@ -37,7 +37,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-south-1
         run: |
-          for file in *.js; do
+          for file in lambda-functions/*.js; do
             function_name=$(basename "$file" .js)
             aws lambda create-function \
               --function-name $function_name \
