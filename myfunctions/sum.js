@@ -1,4 +1,4 @@
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   const { body } = event;
 
   const first = body.a || 0;
