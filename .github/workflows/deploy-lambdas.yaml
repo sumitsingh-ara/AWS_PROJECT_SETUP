@@ -37,11 +37,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-south-1
         run: |
-          file="./sum.js"
-          function_name=sum
+          file="sum.js"
+          function_name=$(basename "$file" .js)
+          zip -r "${function_name}.zip" "$file"  # Create zip file
           aws lambda create-function \
-            --function-name $function_name \
+            --function-name "$function_name" \
+            --runtime nodejs14.x \
             --role arn:aws:iam::533267423509:role/lambda-s3-dyanmodb-full-access \
-            --handler "handler"
-            --code "file://sum.js"
-            --runtime nodejs21.x  # Consider specifying the runtime based on your code
+            --handler "${function_name}.handler" \
+            --zip-file "fileb://${function_name}.zip"  # Specify zip file
+
