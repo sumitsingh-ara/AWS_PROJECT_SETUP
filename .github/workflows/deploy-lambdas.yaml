@@ -44,5 +44,5 @@ jobs:
             --runtime nodejs14.x \
             --role arn:aws:iam::533267423509:role/lambda-s3-dyanmodb-full-access \
             --handler ${function_name}.handler \
-            --code "fileb://${file}"
+            --code "fileb://${GITHUB_WORKSPACE}/${file}"
 
