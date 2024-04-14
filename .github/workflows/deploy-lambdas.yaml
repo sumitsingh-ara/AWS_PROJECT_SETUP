@@ -41,4 +41,5 @@ jobs:
           function_name=$(basename "$file" .js)
           aws lambda create-function \
             --function-name $function_name \
+            --role arn:aws:iam::533267423509:role/lambda-s3-dyanmodb-full-access \
             --code "fileb://${GITHUB_WORKSPACE}/${file}"
