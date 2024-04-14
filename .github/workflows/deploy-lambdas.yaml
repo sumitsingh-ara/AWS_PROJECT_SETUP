@@ -18,18 +18,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y awscli
 
-      - name: Debug
-        run: |
-          pwd
-          ls
+      # - name: Debug
+      #   run: |
+      #     pwd
+      #     ls
 
-      - name: Change to lambda-functions directory
-        run: cd lambda 
+      # - name: Change to lambda-functions directory
+      #   run: cd lambda 
 
-      - name: Debug
-        run: |
-          pwd
-          ls
+      # - name: Debug
+      #   run: |
+      #     pwd
+      #     ls
 
       - name: Deploy Lambda Function
         env:
