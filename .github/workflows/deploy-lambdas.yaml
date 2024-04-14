@@ -37,7 +37,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-south-1
         run: |
-          cd lambda-functions
           file="sum.js"
           function_name=$(basename "$file" .js)
           aws lambda create-function \
