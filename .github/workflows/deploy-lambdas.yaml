@@ -42,7 +42,7 @@ jobs:
           zip -r "${function_name}.zip" "$file"  # Create zip file
           aws lambda create-function \
             --function-name "$function_name" \
-            --runtime nodejs14.x \
+            --runtime nodejs20.x \
             --role arn:aws:iam::533267423509:role/lambda-s3-dyanmodb-full-access \
             --handler "${function_name}.handler" \
             --zip-file "fileb://${function_name}.zip"  # Specify zip file
