@@ -37,11 +37,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-south-1
         run: |
-          file=sum.js
+          file="sum.js"
           function_name=sum
           aws lambda create-function \
             --function-name $function_name \
             --role arn:aws:iam::533267423509:role/lambda-s3-dyanmodb-full-access \
             --handler "handler"
-            --code "fileb://sum.js"
+            --code "file://sum.js"
             --runtime nodejs21.x  # Consider specifying the runtime based on your code
