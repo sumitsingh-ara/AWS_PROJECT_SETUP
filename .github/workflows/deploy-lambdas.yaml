@@ -18,13 +18,23 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y awscli
 
+      - name: Change to lambda-functions directory
+        run: cd lambda-functions
+
+      - name: Debug
+        run: |
+          pwd
+          ls
+          cd lambda-functions
+          pwd
+          ls
+
       - name: Deploy Lambda Functions
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-south-1
         run: |
-          cd lambda-functions
           for file in *.js; do
             function_name=$(basename "$file" .js)
             aws lambda create-function \
