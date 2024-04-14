@@ -24,7 +24,7 @@ jobs:
       #     ls
 
       # - name: Change to lambda-functions directory
-      #   run: cd lambda 
+      #   run: cd lambda
 
       # - name: Debug
       #   run: |
@@ -45,4 +45,3 @@ jobs:
             --role arn:aws:iam::533267423509:role/lambda-s3-dyanmodb-full-access \
             --handler ${function_name}.handler \
             --code "fileb://${GITHUB_WORKSPACE}/${file}"
-
