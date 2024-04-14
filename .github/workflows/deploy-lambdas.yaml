@@ -24,7 +24,7 @@ jobs:
           ls
 
       - name: Change to lambda-functions directory
-        run: cd ./lambda-functions 
+        run: cd lambda 
 
       - name: Debug
         run: |
