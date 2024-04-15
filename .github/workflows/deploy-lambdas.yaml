@@ -18,14 +18,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y awscli jq
 
-      - name: Check if Lambda function exists
-        id: check_function
-        run: |
-          function_name="sum"
-          aws lambda get-function --function-name "$function_name" | jq '.Configuration.FunctionArn' || echo "::set-output name=exists::false"
-
       - name: Deploy Lambda Function
-        if: steps.check_function.outputs.exists == 'false'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -41,16 +34,15 @@ jobs:
             --handler "${function_name}.handler" \
             --zip-file "fileb://${function_name}.zip"  # Specify zip file
 
-      - name: Update Lambda Function
-        if: steps.check_function.outputs.exists != 'false'
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ap-south-1
-        run: |
-          file="sum.js"
-          function_name=$(basename "$file" .js)
-          zip -r "${function_name}.zip" "$file"  # Create zip file
-          aws lambda update-function-code \
-            --function-name "$function_name" \
-            --zip-file "fileb://${function_name}.zip"  # Specify zip file
+      # - name: Update Lambda Function
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: ap-south-1
+      #   run: |
+      #     file="sum.js"
+      #     function_name=$(basename "$file" .js)
+      #     zip -r "${function_name}.zip" "$file"  # Create zip file
+      #     aws lambda update-function-code \
+      #       --function-name "$function_name" \
+      #       --zip-file "fileb://${function_name}.zip"  # Specify zip file
