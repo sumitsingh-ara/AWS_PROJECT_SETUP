@@ -23,7 +23,7 @@ const tableExists = async () => {
   }
 };
 
-// Define parameters for creating the table
+// Define parameters for creating the tabl
 const createTableParams = {
   TableName: "YourTableName", // Specify the table name
   KeySchema: [
