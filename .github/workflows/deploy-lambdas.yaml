@@ -53,4 +53,5 @@ jobs:
           zip -r "${function_name}.zip" "$file"  # Create zip file
           aws lambda update-function-code \
             --function-name "$function_name" \
+            --runtime nodejs16.x \
             --zip-file "fileb://${function_name}.zip"  # Specify zip file
