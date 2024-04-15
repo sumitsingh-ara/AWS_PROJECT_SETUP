@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "aws-sdk": "^2.1599.0"
+    "aws-sdk": "^2.1599.0",
+    "lambda-local": "^2.2.0"
   },
   "scripts": {
     "start": "node index"
