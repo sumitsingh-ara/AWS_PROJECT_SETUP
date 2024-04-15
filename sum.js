@@ -6,7 +6,7 @@ const dynamodb = new AWS.DynamoDB();
 
 // Define parameters for checking if the table exists
 const params = {
-  TableName: "sumit-test", // Specify the table name
+  TableName: "YourTableName", // Specify the table name
 };
 
 // Check if the table exists
